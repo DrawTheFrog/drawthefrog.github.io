@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rod's Page</title>
+  <style> 
+
+body {
+    color: #ffffff;
+    font-style: italic;
+    font-family: 'Comic Sans MS', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #242428;
+    margin-bottom: 250px;
+    
+  }
+  
+  header {
+    margin-top: 40px;
+    color: #242428;
+    border-radius: 40px;
+    background-color: #6cec72;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .feature {
+    background-color: #242428;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .gallery {
+    background-color: #242428;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .images {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+.game {
+    background-color: #242428;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .game-container {
+    display: inline-block;
+    margin-top: 20px;
+  }
+  
+  .circle {
+    width: 80px;
+    height: 80px;
+    background-color: #8BC34A;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px;
+    position: relative;
+  }
+  
+  .circle:active {
+    background-color: #558B2F;
+  }
+  
+.sliders {
+    background-color: #242428;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .slider-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .slider {
+    width: 200px;
+  }
+  
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to Rod's Wacky Webpage!</h1>
+    <p>Where the fun never ends!</p>
+  </header>
+
+<main>
+<section class="sliders">
+  <h2>Interactive and Awesome Sliders!</h2>
+  <div class="slider-container">
+    <input type="range" min="0" max="100" value="50" class="slider" id="slider1">
+    <input type="range" min="0" max="100" value="50" class="slider" id="slider2">
+    <input type="range" min="0" max="100" value="50" class="slider" id="slider3">
+  </div>
+  
+</section>
+
+  
+    <section class="feature">
+      <center><h2>Join the Fun!</h2></center>
+    <center><p>Click the button below to start the wackiest adventure of your life!</p></center>
+  <center><a style="font-family:verdana; font-weight: bold; color:#fff;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"> Start!</a></center>
+    </section>
+
+    <section class="game">
+        <h2>Fun and Interactive Games!</h2>
+        <h3>Click on the Circles to go to Different Games!</h3>
+        <div class="game-container">
+          <a href="joke.html"><div class="circle circle1" ></div></a>
+          <a href="text.html"><div class="circle circle2"></div></a>
+          <a href="canvas.html"><div class="circle circle3"></div></a>
+        </div>
+      </section>
+  </main>
+
+  <footer>
+    <p> Rodrigo Favela</p>
+  </footer>
+
+</body>
+</html>

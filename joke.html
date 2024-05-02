@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Interactive Jokes</title>
+	<style> 
+    body {
+	background-color: #242428;
+	font-family: 'Comic Sans MS', sans-serif;
+	text-align: center;
+	padding: 50px;
+}
+
+#joke-container {
+	background-color: #ffffff;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(255, 255, 255, 1);
+	padding: 30px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#joke {
+	font-size: 24px;
+	margin-bottom: 20px;
+}
+
+#new-joke-btn {
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	padding: 10px 20px;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+#new-joke-btn:hover {
+	background-color: #3e8e41;
+}
+
+.glow {
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    animation: glow 10s ease-in-out infinite alternate;
+      }
+  
+      @keyframes glow {
+    from {
+      text-shadow: 0 0 2px #fff, 0 0 20px #fff, 0 0 5px #0e8855, 0 0 40px #1dbb5a, 0 0 50px #1dbb25, 0 0 60px #087e08, 0 0 70px #1dbb4c;
+    }
+    
+    to {
+      text-shadow: 0 0 2px #fff, 0 0 5px #1dbb37, 0 0 40px #37bb1d, 0 0 50px #1dbb52, 0 0 60px #1dbb37, 0 0 70px #1dbb37, 0 0 80px #037003;
+    }
+  }
+
+  .back-home-button {
+
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #40a474;
+    font-family: Segoe UI, Helvetica Neue, Helvetica, sans-serif;
+    transition: color.1s ease-in-out, background-color.1s ease-in-out;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 10px 20px;
+  
+  }
+  
+  
+  .back-home-button:hover {
+  
+    background-color: #3e8e63;
+    color: #fff;
+  
+  }
+    </style>
+</head>
+<body>
+    <center><h1 class = "glow" style="font-family:'Comic Sans MS', cursive, sans-serif"> Random Jokes! </h1> </center>
+
+    <a href="index.html" class="back-home-button">Back Home</a>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+	<div id="joke-container">
+		<p id="joke"></p>
+		<button id="new-joke-btn">New Joke</button>
+	</div>
+	<script>
+
+const jokeEl = document.getElementById('joke');
+const newJokeBtn = document.getElementById('new-joke-btn');
+
+const jokes = [
+
+	"Why did the chicken go to the seance? To talk to the other side!",
+	"Why don't scientists trust atoms? Because they make up everything!",
+	"Why did the scarecrow win an award? Because he was outstanding in his field!",
+	"Why did the hipster burn his tongue? Because he drank his coffee before it was cool!",
+	"Why did the bicycle fall over? Because it was two-tired!",
+    "Why don't skeletons fight each other? They don't have the guts!",
+    "Why did the tomato turn red? Because it saw the salad dressing!",
+    "Why couldn't the leopard play hide and seek? Because he was always spotted!",
+    "Why did the math book look sad? Because it had too many problems!",
+    "Why don't eggs tell jokes? Because they might crack up!",
+    "Why did the golfer bring two pairs of pants? In case he got a hole in one!",
+    "Why did the belt get arrested? For holding up a pair of pants!",
+    "Why don't oysters donate to charity? Because they're shellfish!",
+    "Why did the tomato turn red? Because it saw the salad dressing!",
+    "Why couldn't the bicycle stand up by itself? It was two-tired!",
+    "Why did the scarecrow win an award? Because he was outstanding in his field!",
+];
+
+newJokeBtn.addEventListener('click', () => {
+	const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+	jokeEl.textContent = randomJoke;
+});
+
+    </script> 
+</body>
+</html>

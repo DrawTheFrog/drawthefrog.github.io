@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <title>Keyboard Simulator</title>
+  <style>
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #242428;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+
+  #keyboard-container {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  
+  }
+
+  #textbox-container {
+    
+    margin-top: 100px;
+    width: 100%;
+    max-width: 600px;
+    background-color: #eee;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #textarea {
+    
+    
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 24px;
+    font-weight: 500;
+    color: #7f7f85;
+    padding: 10px;
+    box-sizing: border-box;
+  
+  }
+  #keyboard {
+    margin-top: -500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    background: #333;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #keyboard span {
+
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #7f7f85;
+    transition: color 0.25s, transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+    background: transparent;
+    border: none;
+    outline: none;
+    
+  
+  }
+  
+  #keyboard span strong {
+    transition: color 0.15s;
+    color: var(--color, rgb(86, 86, 221));
+  }
+  
+  #keyboard span.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+
+  #keyboard span.pressed {
+    color: var(--color, rgb(86, 86, 221));
+    transform: translateY(-5px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.75), 0 0 20px rgba(255, 255, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.25);
+    animation: glow 1s ease-in-out infinite;
+  }
+
+  @keyframes glow {
+    0% {
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.25), 0 0 15px rgba(255, 255, 255, 0.1);
+  
+    }
+    50% {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.75), 0 0 30px rgba(255, 255, 255, 0.5), 0 0 40px rgba(255, 255, 255, 0.25);
+  
+    }
+    100% {
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.25), 0 0 15px rgba(255, 255, 255, 0.1);
+  
+    }
+  
+  }
+
+  .glow {
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    animation: glow 10s ease-in-out infinite alternate;
+      }
+  
+      @keyframes glow {
+    from {
+      text-shadow: 0 0 2px #fff, 0 0 20px #fff, 0 0 5px #0e8855, 0 0 40px #1dbb5a, 0 0 50px #1dbb25, 0 0 60px #087e08, 0 0 70px #1dbb4c;
+    }
+    
+    to {
+      text-shadow: 0 0 2px #fff, 0 0 5px #1dbb37, 0 0 40px #37bb1d, 0 0 50px #1dbb52, 0 0 60px #1dbb37, 0 0 70px #1dbb37, 0 0 80px #037003;
+    }
+  }
+
+  .back-home-button {
+
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #40a474;
+    font-family: Segoe UI, Helvetica Neue, Helvetica, sans-serif;
+    transition: color.1s ease-in-out, background-color.1s ease-in-out;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 10px 20px;
+  
+  }
+  
+  
+  .back-home-button:hover {
+  
+    background-color: #3e8e63;
+    color: #fff;
+  
+  }
+
+    </style>
+</head>
+<body>
+    <center><h1 class = "glow" style="font-family:'Comic Sans MS', cursive, sans-serif"> Keyboard Fun! </h1> </center>
+
+    <a href="index.html" class="back-home-button">Back Home</a>
+
+  <div id="textbox-container">
+    <textarea id="textarea" rows="5" cols="30"></textarea>
+  </div>
+  <div id="keyboard-container">
+    <div id="keyboard">
+      <span data-key="q">q</span>
+      <span data-key="w">w</span>
+      <span data-key="e">e</span>
+      <span data-key="r">r</span>
+      <span data-key="t">t</span>
+      <span data-key="y">y</span>
+      <span data-key="u">u</span>
+      <span data-key="i">i</span>
+      <span data-key="o">o</span>
+      <span data-key="p">p</span>
+      <span data-key="a">a</span>
+      <span data-key="s">s</span>
+      <span data-key="d">d</span>
+      <span data-key="f">f</span>
+      <span data-key="g">g</span>
+      <span data-key="h">h</span>
+      <span data-key="j">j</span>
+      <span data-key="k">k</span>
+      <span data-key="l">l</span>
+      <span data-key="z">z</span>
+      <span data-key="x">x</span>
+      <span data-key="c">c</span>
+      <span data-key="v">v</span>
+      <span data-key="b">b</span>
+      <span data-key="n">n</span>
+      <span data-key="m">m</span>
+
+
+
+    </div>
+  </div>
+
+  
+<script>
+
+const keyboard = document.getElementById('keyboard');
+const keys = keyboard.querySelectorAll('span');
+const textbox = document.getElementById('textbox');
+const textarea = document.getElementById('textarea');
+
+let currentColor;
+
+keyboard.focus();
+
+const soundFiles = [
+  'apple1.mp3',
+  'apple2.mp3',
+  'apple3.mp3',
+];
+
+document.addEventListener('keydown', (e) => {
+  const key = e.key.toLowerCase();
+
+  if (key === "backspace") {
+    e.preventDefault(); 
+    if (!e.shiftKey) {
+      const cursorPosition = textarea.selectionStart;
+      if (cursorPosition > 0) {
+        textarea.value = textarea.value.slice(0, cursorPosition - 1) + textarea.value.slice(cursorPosition);
+        cursorPosition--;
+        textarea.setSelectionRange(cursorPosition, cursorPosition);
+      }
+    } else {
+      const selection = window.getSelection();
+      if (selection.rangeCount > 0) {
+        const range = selection.getRangeAt(0);
+        const start = range.startOffset;
+        const end = range.endOffset;
+        const textBefore = textarea.value.slice(0, start);
+        const textAfter = textarea.value.slice(end);
+        textarea.value = textBefore + textAfter;
+        textarea.setSelectionRange(start, start);
+      }
+    }
+  } else if (key === "enter") {
+    e.preventDefault(); 
+    if (!e.shiftKey) {
+      
+      textarea.value += '\n';
+    } else {
+      
+      textarea.value += '\t';
+    }
+  } else if (key === " ") {
+    e.preventDefault(); 
+    
+    textarea.value += " ";
+  } else {
+    e.preventDefault(); 
+    keys.forEach((keyElement) => {
+      if (keyElement.dataset.key === key) {
+        const randomColor = `#${Math.floor(Math.random()*16777215).toString(16)}`;
+        keyElement.style.color = randomColor;
+        keyElement.classList.add('pressed');
+        setTimeout(() => {
+          keyElement.style.color = '';
+          keyElement.classList.remove('pressed');
+        }, 100);
+        
+        const randomSound = Math.floor(Math.random() * soundFiles.length);
+        const sound = new Audio(soundFiles[randomSound]);
+
+        sound.volume = 0.2;
+        sound.play();
+        textarea.style.color = randomColor;
+        textarea.value += key;
+      }
+    });
+  }
+});
+
+function getRandomColor() {
+  return `#${Math.floor(Math.random()*16777215).toString(16)}`;
+}
+
+textarea.addEventListener('input', (e) => {
+  const cursorPosition = e.target.selectionStart;
+  const textBeforeCursor = e.target.value.slice(0, cursorPosition);
+  const textAfterCursor = e.target.value.slice(cursorPosition);
+  e.target.style.color = currentColor;
+  e.target.value = textBeforeCursor + e.data + textAfterCursor;
+});
+
+keys.forEach((key) => {
+  key.addEventListener('click', () => {
+    currentColor = getRandomColor();
+    textarea.value += key.textContent;
+    textarea.style.color = currentColor;
+  });
+});
+
+  </script>
+
+</body>
+</html>

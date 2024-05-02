@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canvas Drawing</title>
+  
+  <style>
+    body {
+      margin: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #242428;
+      color: #fff;
+      font-weight: lighter;
+      font-family: 'Comic Sans MS', sans-serif;
+    }
+
+    .glow {
+    margin-top: -200px;
+    font-size: 80px;
+    color: #ffffff;
+    text-align: center;
+    animation: glow 10s ease-in-out infinite alternate;
+      }
+  
+      @keyframes glow {
+    from {
+      text-shadow: 0 0 2px #fff, 0 0 20px #fff, 0 0 5px #0e8855, 0 0 40px #1dbb5a, 0 0 50px #1dbb25, 0 0 60px #087e08, 0 0 70px #1dbb4c;
+    }
+    
+    to {
+      text-shadow: 0 0 2px #fff, 0 0 5px #1dbb37, 0 0 40px #37bb1d, 0 0 50px #1dbb52, 0 0 60px #1dbb37, 0 0 70px #1dbb37, 0 0 80px #037003;
+    }
+  }
+
+
+    .back-home-button {
+
+    font-size: 20px;
+    border-radius: 4px;
+    margin: 20px 0;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: #40a474;
+    font-weight: 400;
+    font-family: Segoe UI, Helvetica Neue, Helvetica, sans-serif;
+    transition: color.1s ease-in-out, background-color.1s ease-in-out;
+    border: 1px solid transparent;
+    cursor: pointer;
+    padding: 10px 20px;
+
+    }
+
+
+    .back-home-button:hover {
+
+    background-color: #3e8e63;
+    color: #fff;
+
+    }
+
+
+    #canvas-container {
+      position: relative;
+      margin-top: 20px; 
+    }
+
+    canvas {
+      border: 5px solid #000;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .controls {
+      
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      
+    }
+
+    .controls label {
+      font-weight: bold;
+    }
+
+    .controls button {
+      margin: 50px;
+      padding: 8px 15px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #14963f;
+      color: #fff;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .controls button:hover {
+      background-color: #06b300;
+    }
+
+    .controls input[type="color"] {
+      margin: 5px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .controls select {
+      margin: 5px;
+      padding: 5px;
+      border: none;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <center><h1 class="glow">Drawing!</h1></center>
+
+  <center><a href="index.html" class="back-home-button">Back Home</a> </center>
+
+
+  <div id="canvas-container">
+    <canvas id="drawCanvas" width="800" height="500"></canvas>
+    <div class="controls">
+      <label for="brushSize">Brush Size:</label>
+      <select id="brushSize">
+        <option value="5">Small</option>
+        <option value="10">Medium</option>
+        <option value="20">Large</option>
+      </select>
+      <button id="clearCanvas">Clear Canvas</button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('drawCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let isDrawing = false;
+    let lastX = 0;
+    let lastY = 0;
+    let hue = 0;
+    let direction = true;
+
+    function draw(e) {
+      if (!isDrawing) return;
+      ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+      ctx.lineWidth = document.getElementById('brushSize').value;
+
+      ctx.beginPath();
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+
+      hue++;
+      if (hue >= 360) {
+        hue = 0;
+      }
+
+      if (ctx.lineWidth >= 50 || ctx.lineWidth <= 1) {
+        direction = !direction;
+      }
+
+      if (direction) {
+        ctx.lineWidth++;
+      } else {
+        ctx.lineWidth--;
+      }
+    }
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      [lastX, lastY] = [e.offsetX, e.offsetY];
+    });
+
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseout', () => isDrawing = false);
+
+    document.getElementById('clearCanvas').addEventListener('click', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+  </script>
+</body>
+</html>
